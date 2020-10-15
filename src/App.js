@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, NavLink} from 'react-router-dom'
 import './App.css';
+import AboutUs from './components/AboutUs';
+import home from './components/Home.js';
+import Navbar from './components/Navbar'
+import NewTaskForm from './components/NewTaskForm';
+import TaskContainer from './containers/TaskContainer'
+import EditTaskForm from './components/EditTaskForm';
+import SingleTodo from './components/SingleTodo.js'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+  
+  render(){
+    return (
+      <Router>
+        <div>
+          <Navbar />
+          <Route exact path="/" component={home}/>
+          <Route exact path="/info" component={AboutUs}></Route>
+          <Route exact path="/newtask" component={NewTaskForm}></Route>
+          <Route exact path="/viewtasks" component={TaskContainer}></Route>
+          <Route exact path="/edittask" component={EditTaskForm}></Route>
+          <Route exact path="/todo" component={SingleTodo}></Route>
+        </div>
+      </Router>
+    );
+  }
 }
 
-export default App;
